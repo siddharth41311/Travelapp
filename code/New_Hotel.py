@@ -4,392 +4,661 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 hotels = {
-    'Jaipur': [
-        'Hotel Kalyan',                         # ⭐ 1-star
-        'Hotel Shikha',                         # ⭐⭐ 2-star
-        'Vesta International',                  # ⭐⭐⭐ 3-star
-        'Holiday Inn Jaipur City Centre',       # ⭐⭐⭐⭐ 4-star
-        'The Oberoi Rajvilas'                   # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Udaipur': [
-        'Hotel Dream Palace',                   # ⭐ 1-star
-        'Hotel Minerwa',                        # ⭐⭐ 2-star
-        'Hotel Lakend',                         # ⭐⭐⭐ 3-star
-        'The Ananta Udaipur',                   # ⭐⭐⭐⭐ 4-star
-        'Taj Lake Palace'                       # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Kota': [
-        'Hotel Madhushree',                     # ⭐ 1-star
-        'Hotel Surya Prime',                    # ⭐⭐ 2-star
-        'Hotel Lilac',                          # ⭐⭐⭐ 3-star
-        'Hotel The Grand Chandiram',            # ⭐⭐⭐⭐ 4-star
-        'Country Inn & Suites'                  # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Gangtok': [
-        'Hotel Karma',                          # ⭐ 1-star
-        'Hotel Tashi Delek',                    # ⭐⭐ 2-star
-        'The Royal Plaza',                      # ⭐⭐⭐ 3-star
-        'WelcomHeritage Denzong Regency',       # ⭐⭐⭐⭐ 4-star
-        'Mayfair Spa Resort & Casino'           # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Coimbatore': [
-        'Hotel City Tower',                     # ⭐ 1-star
-        'Hotel The Arcadia',                    # ⭐⭐ 2-star
-        'Gokulam Park Coimbatore',              # ⭐⭐⭐ 3-star
-        'Le Meridien Coimbatore',               # ⭐⭐⭐⭐ 4-star
-        'Vivanta Coimbatore'                    # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Chennai': [
-        'Hotel Pandian',                        # ⭐ 1-star
-        'Hotel Marina Inn',                     # ⭐⭐ 2-star
-        'Green Park Hotel',                     # ⭐⭐⭐ 3-star
-        'The Accord Metropolitan',              # ⭐⭐⭐⭐ 4-star
-        'ITC Grand Chola'                       # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Hyderabad': [
-        'Hotel Grand Elite',                    # ⭐ 1-star
-        'Hotel Geetanjali',                     # ⭐⭐ 2-star
-        'Lemon Tree Hotel',                     # ⭐⭐⭐ 3-star
-        'Radisson Blu Plaza',                   # ⭐⭐⭐⭐ 4-star
-        'Taj Falaknuma Palace'                  # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Khowai': [
-        'Hotel Green View',                     # ⭐ 1-star
-        'Hotel Gitanjali',                      # ⭐⭐ 2-star
-        'Hotel Royal Residency',                # ⭐⭐⭐ 3-star
-        'Hotel White House',                    # ⭐⭐⭐⭐ 4-star
-        'Hotel Green Park'                      # ⭐⭐⭐⭐ 4-star (Alternative for 5-star)
-    ],
-    'Ayodhya': [
-        'Hotel Panchsheel',                     # ⭐ 1-star
-        'Hotel Krishna Palace',                 # ⭐⭐ 2-star
-        'Taraji Resort',                        # ⭐⭐⭐ 3-star
-        'Shree Ram Hotel',                      # ⭐⭐⭐⭐ 4-star
-        'Hotel Ramprastha'                      # ⭐⭐⭐⭐ 4-star (Alternative for 5-star)
-    ],
-    'Varanasi': [
-        'Hotel Buddha',                         # ⭐ 1-star
-        'Hotel Tridev',                         # ⭐⭐ 2-star
-        'Hotel Hindusthan International',       # ⭐⭐⭐ 3-star
-        'Ramada Plaza JHV',                     # ⭐⭐⭐⭐ 4-star
-        'BrijRama Palace'                       # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Prayagraj': [
-        'Hotel Yatrik',                         # ⭐ 1-star
-        'Hotel Milan Palace',                   # ⭐⭐ 2-star
-        'Hotel Harsh Ananda',                   # ⭐⭐⭐ 3-star
-        'Grand Continental Hotel',              # ⭐⭐⭐⭐ 4-star
-        'Kanha Shyam Hotel'                     # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Dehradun': [
-        'Hotel Abhinandan',                     # ⭐ 1-star
-        'Hotel Softel Plaza',                   # ⭐⭐ 2-star
-        'Four Points by Sheraton',              # ⭐⭐⭐ 3-star
-        'Lemon Tree Hotel',                     # ⭐⭐⭐⭐ 4-star
-        'JW Marriott Mussoorie'                 # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Kolkata': [
-        'Hotel Emirates',                       # ⭐ 1-star
-        'Hotel Dee Empresa',                    # ⭐⭐ 2-star
-        'The Peerless Inn',                     # ⭐⭐⭐ 3-star
-        'The Park Kolkata',                     # ⭐⭐⭐⭐ 4-star
-        'The Oberoi Grand'                      # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Delhi NCR': [
-        'Hotel Le Roi',                         # ⭐ 1-star
-        'Hotel Godwin Deluxe',                  # ⭐⭐ 2-star
-        'The Hans',                             # ⭐⭐⭐ 3-star
-        'The Lalit New Delhi',                  # ⭐⭐⭐⭐ 4-star
-        'The Leela Palace'                      # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Chandigarh': [
-        'Hotel Park Inn',                       # ⭐ 1-star
-        'Hotel Oyster',                         # ⭐⭐ 2-star
-        'Hometel Chandigarh',                   # ⭐⭐⭐ 3-star
-        'JW Marriott Chandigarh',               # ⭐⭐⭐⭐ 4-star
-        'Taj Chandigarh'                        # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Puducherry': [
-        'Hotel Coramandal Heritage',            # ⭐ 1-star
-        'Hotel Annamalai International',        # ⭐⭐ 2-star
-        'Le Dupleix',                           # ⭐⭐⭐ 3-star
-        'The Promenade',                        # ⭐⭐⭐⭐ 4-star
-        'The Residency Towers'                  # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Diu': [
-        'Hotel Palacio De Diu',                 # ⭐ 1-star
-        'Hotel Apaar',                          # ⭐⭐ 2-star
-        'Kostamar Beach Resort',                # ⭐⭐⭐ 3-star
-        'Hotel Kohinoor',                       # ⭐⭐⭐⭐ 4-star
-        'Radhika Beach Resort'                  # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Srinagar': [
-        'Hotel New Green View',                 # ⭐ 1-star
-        'Hotel Ahdoos',                         # ⭐⭐ 2-star
-        'Hotel Comrade Inn',                    # ⭐⭐⭐ 3-star
-        'Vivanta Dal View',                     # ⭐⭐⭐⭐ 4-star
-        'The Lalit Grand Palace'                # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Jamshedpur': [
-        'Hotel South Park',              # ⭐ 1-star
-        'The Boulevard Hotel',           # ⭐⭐ 2-star
-        'Hotel Ganga Regency',           # ⭐⭐⭐ 3-star
-        'Ramada Jamshedpur',             # ⭐⭐⭐⭐ 4-star
-        'Alcor Hotel'                    # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Ranchi': [
-        'Hotel Anjali',                  # ⭐ 1-star
-        'Hotel Accord',                  # ⭐⭐ 2-star
-        'Capitol Residency',             # ⭐⭐⭐ 3-star
-        'Radisson Blu Hotel Ranchi',     # ⭐⭐⭐⭐ 4-star
-        'Chanakya BNR Hotel'             # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Bengaluru': [
-        'Hotel Empire',                  # ⭐ 1-star
-        'Hotel Nandhini',                # ⭐⭐ 2-star
-        'Treebo Trend Raj Premier',      # ⭐⭐⭐ 3-star
-        'The Chancery Pavilion',         # ⭐⭐⭐⭐ 4-star
-        'The Leela Palace Bengaluru'     # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Mysuru': [
-        'Hotel Roopa',                   # ⭐ 1-star
-        'Hotel Aditya',                  # ⭐⭐ 2-star
-        'The Quorum',                    # ⭐⭐⭐ 3-star
-        'Country Inn & Suites',          # ⭐⭐⭐⭐ 4-star
-        'Radisson Blu Plaza Hotel Mysore' # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Thiruvananthapuram': [
-        'Hotel Blue Nest',               # ⭐ 1-star
-        'Hotel Prathiba Heritage',       # ⭐⭐ 2-star
-        'Keys Select Hotel',             # ⭐⭐⭐ 3-star
-        'Mascot Hotel',                  # ⭐⭐⭐⭐ 4-star
-        'Hilton Garden Inn'              # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Gwalior': [
-        'Hotel Grace',                   # ⭐ 1-star
-        'Hotel Radiance',                # ⭐⭐ 2-star
-        'The Central Park',              # ⭐⭐⭐ 3-star
-        'Clarks Inn Suites',             # ⭐⭐⭐⭐ 4-star
-        'Taj Usha Kiran Palace'          # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Indore': [
-        'Hotel Paradise',                # ⭐ 1-star
-        'Hotel Kalinga',                 # ⭐⭐ 2-star
-        'Effotel Hotel',                 # ⭐⭐⭐ 3-star
-        'Radisson Blu Hotel Indore',     # ⭐⭐⭐⭐ 4-star
-        'Sayaji Hotel'                   # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Bhopal': [
-        'Hotel Gaurav Palace',           # ⭐ 1-star
-        'Hotel Shree Vatika',            # ⭐⭐ 2-star
-        'Courtyard by Marriott',         # ⭐⭐⭐ 3-star
-        'Jehan Numa Palace Hotel',       # ⭐⭐⭐⭐ 4-star
-        'Taj Lakefront Bhopal'           # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Mumbai': [
-        'Hotel New Shree Niwas',         # ⭐ 1-star
-        'Hotel City Palace',             # ⭐⭐ 2-star
-        'Residency Hotel',               # ⭐⭐⭐ 3-star
-        'The Orchid Mumbai',             # ⭐⭐⭐⭐ 4-star
-        'The Taj Mahal Palace'           # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Navi Mumbai': [
-        'Hotel Yogi Midtown',            # ⭐ 1-star
-        'Hotel Abbott',                  # ⭐⭐ 2-star
-        'Royal Orchid Central Grazia',   # ⭐⭐⭐ 3-star
-        'The Regenza by Tunga',          # ⭐⭐⭐⭐ 4-star
-        'Four Points by Sheraton'        # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Nashik': [
-        'Hotel Panchavati',              # ⭐ 1-star
-        'Hotel Sai Palace',              # ⭐⭐ 2-star
-        'Express Inn',                   # ⭐⭐⭐ 3-star
-        'The Gateway Hotel',             # ⭐⭐⭐⭐ 4-star
-        'Ginger Nashik'                  # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Pune': [
-        'Hotel Shivkrupa',               # ⭐ 1-star
-        'Hotel Orchard',                 # ⭐⭐ 2-star
-        'St Laurn Hotel',                # ⭐⭐⭐ 3-star
-        'Hyatt Pune',                    # ⭐⭐⭐⭐ 4-star
-        'Conrad Pune'                    # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Imphal': [
-        'Hotel Krishtina',               # ⭐ 1-star
-        'Hotel Imphal',                  # ⭐⭐ 2-star
-        'The Classic Hotel',             # ⭐⭐⭐ 3-star
-        'Hotel Yaiphaba',                # ⭐⭐⭐⭐ 4-star
-        'Classic Grande Imphal'          # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Shillong': [
-        'Hotel Pine Hill',               # ⭐ 1-star
-        'Hotel Pegasus Crown',           # ⭐⭐ 2-star
-        'Hotel Centre Point',            # ⭐⭐⭐ 3-star
-        'Ri Kynjai',                     # ⭐⭐⭐⭐ 4-star
-        'Tripura Castle'                 # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Puri': [
-        'Hotel Sonar Bangla',            # ⭐ 1-star
-        'Hotel Gandhara',                # ⭐⭐ 2-star
-        'Hotel Holiday Resort',          # ⭐⭐⭐ 3-star
-        'MAYFAIR Waves',                 # ⭐⭐⭐⭐ 4-star
-        'Toshali Sands'                  # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Bhubaneswar': [
-        'Hotel Arya Palace',             # ⭐ 1-star
-        'Hotel Suryansh',                # ⭐⭐ 2-star
-        'VITS Bhubaneswar',              # ⭐⭐⭐ 3-star
-        'Swosti Premium',                # ⭐⭐⭐⭐ 4-star
-        'Mayfair Lagoon'                 # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Ludhiana': [
-        'Hotel Nanda',                   # ⭐ 1-star
-        'Hotel Maharaja Regency',        # ⭐⭐ 2-star
-        'Hotel Gulmor',                  # ⭐⭐⭐ 3-star
-        'Radisson Blu Hotel Ludhiana',   # ⭐⭐⭐⭐ 4-star
-        'Hyatt Regency Ludhiana'         # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Amritsar': [
-        'Hotel City Castle',             # ⭐ 1-star
-        'Hotel CJ International',        # ⭐⭐ 2-star
-        'Hotel Hong Kong Inn',           # ⭐⭐⭐ 3-star
-        'Holiday Inn Amritsar',          # ⭐⭐⭐⭐ 4-star
-        'Taj Swarna Amritsar'            # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Tirupati': [
-        'Hotel Sandeep Residency',            # ⭐ 1-star
-        'Hotel Mayura',                       # ⭐⭐ 2-star
-        'Treebo Trend SLS Grand',             # ⭐⭐⭐ 3-star
-        'Fortune Select Grand Ridge',         # ⭐⭐⭐⭐ 4-star
-        'Marasa Sarovar Premiere'             # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Visakhapatnam': [
-        'Hotel Lakshmi Grand',                # ⭐ 1-star
-        'Hotel Akshaya',                      # ⭐⭐ 2-star
-        'Treebo Trend Seaesta RK Beach',      # ⭐⭐⭐ 3-star
-        'The Gateway Hotel Beach Road',       # ⭐⭐⭐⭐ 4-star
-        'Novotel Visakhapatnam Varun Beach'   # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Vijayawada': [
-        'Hotel Manorama',                    # ⭐ 1-star
-        'Innotel Hotel',                     # ⭐⭐ 2-star
-        'The Kay Hotel',                     # ⭐⭐⭐ 3-star
-        'Quality Hotel DV Manor',            # ⭐⭐⭐⭐ 4-star
-        'Novotel Vijayawada Varun'           # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Itanagar': [
-        'Hotel Blue Pine',                   # ⭐ 1-star
-        'Hotel Todo',                        # ⭐⭐ 2-star
-        'Hotel Arun Subansiri',              # ⭐⭐⭐ 3-star
-        'Hotel Donyi Polo Ashok',            # ⭐⭐⭐⭐ 4-star
-        'Hotel PYBSS'                        # ⭐⭐⭐⭐ 4-star (Alternative for 5-star)
-    ],
-    'Dhubri': [
-        'Hotel Green View',                  # ⭐ 1-star
-        'Hotel Highway',                     # ⭐⭐ 2-star
-        'Hotel Executive Inn',               # ⭐⭐⭐ 3-star
-        'Hotel Geetanjali',                  # ⭐⭐⭐⭐ 4-star
-        'Hotel Rajmahal'                     # ⭐⭐⭐⭐ 4-star (Alternative for 5-star)
-    ],
-    'Guwahati': [
-        'Hotel Siroy Lily',                  # ⭐ 1-star
-        'Hotel Atithi',                      # ⭐⭐ 2-star
-        'Hotel Kiranshree Portico',          # ⭐⭐⭐ 3-star
-        'Hotel Dynasty',                     # ⭐⭐⭐⭐ 4-star
-        'Radisson Blu Hotel Guwahati'        # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Patna': [
-        'Hotel Chanakya Inn',                # ⭐ 1-star
-        'Hotel Samrat International',        # ⭐⭐ 2-star
-        'Hotel Patliputra Exotica',          # ⭐⭐⭐ 3-star
-        'Hotel Maurya Patna',                # ⭐⭐⭐⭐ 4-star
-        'Lemon Tree Premier Patna'           # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Raipur': [
-        'Hotel Simran',                      # ⭐ 1-star
-        'Hotel Grand Arjun',                 # ⭐⭐ 2-star
-        'Hotel Babylon Inn',                 # ⭐⭐⭐ 3-star
-        'Hotel VW Canyon',                   # ⭐⭐⭐⭐ 4-star
-        'Courtyard by Marriott Raipur'       # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Bilaspur': [
-        'Hotel Shree Shyam International',   # ⭐ 1-star
-        'Hotel East Park',                   # ⭐⭐ 2-star
-        'Hotel Intercity International',     # ⭐⭐⭐ 3-star
-        'Hotel Heavens Park',                # ⭐⭐⭐⭐ 4-star
-        'Hotel Central Point International'  # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Raigarh': [
-        'Hotel Shreshtha',                   # ⭐ 1-star
-        'Hotel Jindal Regency',              # ⭐⭐ 2-star
-        'Hotel Ans International',           # ⭐⭐⭐ 3-star
-        'Hotel Trinity Grand',               # ⭐⭐⭐⭐ 4-star
-        'Hotel Shubham Palace'               # ⭐⭐⭐⭐ 4-star (Alternative for 5-star)
-    ],
-    'Mopa': [
-        'Hotel Hill Rock',                   # ⭐ 1-star
-        'Hotel Swarnam',                     # ⭐⭐ 2-star
-        'Hotel La Grace',                    # ⭐⭐⭐ 3-star
-        'Hotel Hill Rock Suites',            # ⭐⭐⭐⭐ 4-star
-        'Hotel Swarnam Deluxe'               # ⭐⭐⭐⭐ 4-star (Alternative for 5-star)
-    ],
-    'Dabolim': [
-        'Hotel Cliff',                       # ⭐ 1-star
-        'Hotel La Paz Gardens',              # ⭐⭐ 2-star
-        'The HQ',                            # ⭐⭐⭐ 3-star
-        'Bogmallo Beach Resort',             # ⭐⭐⭐⭐ 4-star
-        'Coconut Creek Resort'               # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Ahmedabad': [
-        'Hotel Kamran Palace',               # ⭐ 1-star
-        'Hotel Host Inn',                    # ⭐⭐ 2-star
-        'Treebo Trend Ambassador',           # ⭐⭐⭐ 3-star
-        'Fortune Landmark',                  # ⭐⭐⭐⭐ 4-star
-        'Hyatt Regency Ahmedabad'            # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Surat': [
-        'Hotel Merit',                       # ⭐ 1-star
-        'Hotel Central Excellency',          # ⭐⭐ 2-star
-        'Lords Plaza Surat',                 # ⭐⭐⭐ 3-star
-        'The Grand Bhagwati',                # ⭐⭐⭐⭐ 4-star
-        'Surat Marriott Hotel'               # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Vadodara': [
-        'Hotel Skylight',                    # ⭐ 1-star
-        'Hotel Alpha',                       # ⭐⭐ 2-star
-        'Hampton by Hilton Vadodara',        # ⭐⭐⭐ 3-star
-        'Four Points by Sheraton Vadodara',  # ⭐⭐⭐⭐ 4-star
-        'The Fern Residency Vadodara'        # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Hisar': [
-        'Hotel City Square',                 # ⭐ 1-star
-        'Hotel Relax',                       # ⭐⭐ 2-star
-        'Hotel Grace',                       # ⭐⭐⭐ 3-star
-        'Hotel Saffron',                     # ⭐⭐⭐⭐ 4-star
-        'WelcomHotel by ITC Hisar'           # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Shimla': [
-        'Hotel Dreamland',                   # ⭐ 1-star
-        'Hotel Shingar',                     # ⭐⭐ 2-star
-        'Hotel Marina',                      # ⭐⭐⭐ 3-star
-        'Radisson Hotel Shimla',             # ⭐⭐⭐⭐ 4-star
-        'Wildflower Hall, An Oberoi Resort'  # ⭐⭐⭐⭐⭐ 5-star
-    ],
-    'Kullu-Manali': [
-        'Hotel Greenfields',                 # ⭐ 1-star
-        'Hotel Snow Park',                   # ⭐⭐ 2-star
-        'Hotel Piccadilly',                  # ⭐⭐⭐ 3-star
-        'Apple Country Resorts',             # ⭐⭐⭐⭐ 4-star
-        'The Himalayan'                      # ⭐⭐⭐⭐⭐ 5-star
-    ],
+    'Jaipur': {
+        'The Lalit Jaipur': 5,
+        'Radisson Blu Jaipur': 5,
+        'Jaipur Marriott Hotel': 5,
+        'Hotel Royal Orchid Jaipur': 4,
+        'The Fern, Jaipur': 4,
+        'Four Points by Sheraton Jaipur': 4,
+        'Clarion Bella Casa By Choice Hotels': 4,
+        'Hotel Siddharsh Heritage': 3,
+        'Indie Stays Jaipur': 3,
+        'Hotel Sapphire Palace': 2
+    },
+    'Udaipur': {
+        'Super Hotel O Udaipur Jaysamand Road formerly Shree Palace': 5,
+        'Tripli Hotels Le Shelton': 3,
+        'Uddhav Vilas A Family Hotel': 3,
+        'Hotel Udai Palace - Centrally Located Budget Family Stay': 3,
+        'The Fern Residency Udaipur': 3,
+        'Hotel Mandovin': 3,
+        'Raghu Mahal Hotel': 3,
+        'Amrit Mahal': 3,
+        'Hotel Meenakshi, Udaipur': 3,
+        'Hotel Devraj Niwas on Lake Pichola': 3
+    },
+    'Kota': {
+        'Hotel Surya Royal': 3,
+        'Hotel Le Amor': 3,
+        'Country Inn & Suites by Radisson, Kota': 4,
+        'Hotel 5 Flowers Ananta Elite': 3,
+        'Hotel Ortus': 3,
+        'Hotel Kanchan Residency': 3,
+        'Hotel Flowers Inn': 3,
+        'Hotel Park Horizon': 3,
+        'Hotel Vandana': 3,
+        'Hotel Bharat': 3
+    },
+    'Gangtok': {
+        'The Elgin Nor-Khill - A Heritage Hotel & Spa': 4,
+        'Mayfair Spa Resort & Casino': 5,
+        'Lemon Tree Hotel, Gangtok': 3,
+        'The Royal Plaza': 3,
+        'WelcomHeritage Denzong Regency': 4,
+        'Summit Norling Resort & Spa': 3,
+        'Hotel Karma': 2,
+        'Hotel Tashi Delek': 2,
+        'Hotel Sonam Delek': 3,
+        'The Nettle and Fern Hotel': 3
+    },
+    'Coimbatore': {
+        'Le Méridien Coimbatore': 5,
+        'Radisson Blu Hotel Coimbatore': 5,
+        'Fairfield by Marriott Coimbatore': 4,
+        'Vivanta Coimbatore': 4,
+        'IKON by Annapoorna': 4,
+        'Zone Connect Hotel, Coimbatore': 4,
+        'Gokulam Park - Coimbatore': 4,
+        'Hash Six Hotels': 4,
+        'Zone by The Park Hotel, Coimbatore': 4,
+        'Hotel Kiscol Grands': 4
+    },
+    'Chennai': {
+        'ITC Grand Chola Hotel': 5,
+        'Taj Connemara': 5,
+        'Trident, Chennai': 5,
+        'The Leela Palace Chennai': 5,
+        'Hyatt Regency Chennai': 5,
+        'The Park Chennai': 5,
+        'Hilton Chennai': 5,
+        'The Westin Chennai Velachery': 5,
+        'Courtyard by Marriott Chennai': 4,
+        'Radisson Blu Hotel Chennai City Centre': 4
+    },
+    'Hyderabad': {
+        'Taj Falaknuma Palace': 5,
+        'Park Hyatt Hyderabad': 5,
+        'ITC Kohenur, a Luxury Collection Hotel': 5,
+        'The Westin Hyderabad Mindspace': 5,
+        'Trident Hyderabad': 5,
+        'Novotel Hyderabad Airport': 5,
+        'Radisson Blu Plaza Hotel Hyderabad Banjara Hills': 5,
+        'Marriott Hotel & Convention Centre': 5,
+        'Courtyard by Marriott Hyderabad': 4,
+        'Holiday Inn Express Hyderabad Banjara Hills': 4
+    },
+    'Khowai': {
+        'Hotel Sonar Tori': 3,
+        'Hotel Woodland Park': 3,
+        'Hotel City Centre': 3,
+        'Hotel Welcome Palace': 3,
+        'Hotel Radha International': 3,
+        'Hotel Palace Inn': 3,
+        'Hotel Rajdhani': 3,
+        'Hotel Tripureshwari': 3,
+        'Hotel Shankar': 3,
+        'Hotel Neer Mahal': 3
+    },
+    'Ayodhya': {
+        'Hotel Ramprastha': 3,
+        'Hotel Ramayana': 3,
+        'Hotel Saket Residency': 3,
+        'Hotel Panchsheel': 3,
+        'Hotel Krishna Palace': 3,
+        'Hotel Ram Nagari': 3,
+        'Hotel Ayodhya Greens': 3,
+        'Hotel Saryu Palace': 3,
+        'Hotel Tulsi': 3,
+        'Hotel Hanuman': 3
+    },
+    'Varanasi': {
+        'Taj Nadesar Palace': 5,
+        'The Gateway Hotel Ganges': 5,
+        'Ramada Plaza JHV Varanasi': 5,
+        'Hotel Clarks Varanasi': 5,
+        'Radisson Hotel Varanasi': 5,
+        'Hotel Madin': 4,
+        'Rivatas by Ideal': 4,
+        'Hotel Hindusthan International Varanasi': 4,
+        'The Amayaa': 4,
+        'Hotel Costa Riviera': 4
+    },
+    'Prayagraj': {
+        'Hotel Kanha Shyam': 4,
+        'Hotel Harsh Ananda': 4,
+        'Hotel Polo Max Allahabad': 3,
+        'Hotel Milan Palace': 3,
+        'Hotel Yatrik': 3,
+        'Hotel Crown Palace': 3,
+        'Hotel Prayag Inn': 3,
+        'Hotel Ravisha Continental': 3,
+        'Hotel DPS Inn': 3,
+        'Hotel Mandiram': 3
+    },
+    'Dehradun': {
+        'Gaharwar Home Stay': 3,
+        'Paradise Home Stay': 3,
+        'Hotel Padmini Palace': 3,
+        'The Hotel JS Souvenir': 3,
+        'Hotel KSS Inn': 3,
+        'Naturoville Wellness': 4,
+        'Hotel Surya Inn': 3,
+        'Hotel Shiva & IS': 3,
+        'Hotel Sun Shine': 3,
+        'Hill Top Swiss Cottage': 3
+    },
+    'Kolkata': {
+        'Novotel Kolkata Hotel and Residences': 5,
+        'Pride Plaza Hotel Kolkata': 5,
+        'The Westin Kolkata Rajarhat': 5,
+        'Holiday Inn Kolkata Airport': 4,
+        'Swissotel Kolkata': 5,
+        'Howard Johnson by Wyndham Kolkata': 4,
+        'Ethnotel, Kolkata Airport': 3,
+        'Regenta Inn Larica': 3,
+        'Hotel Eastern Plaza': 3,
+        'Golden Tulip Kolkata': 4
+    },
+    'Delhi NCR': {
+        'Radisson Blu Plaza Delhi Airport': 5,
+        'JW Marriott Hotel New Delhi Aerocity': 5,
+        'Holiday Inn New Delhi International Airport': 4,
+        'Pullman New Delhi Aerocity': 5,
+        'Novotel New Delhi Aerocity': 5,
+        'Roseate House New Delhi': 5,
+        'Pride Plaza Hotel Aerocity New Delhi': 5,
+        'Lemon Tree Premier, Delhi Airport': 4,
+        'Red Fox Hotel, Delhi Airport': 3,
+        'Ibis New Delhi Aerocity': 3
+    },
+    'Chandigarh': {
+        'JW Marriott Hotel Chandigarh': 5,
+        'Taj Chandigarh': 5,
+        'Hyatt Regency Chandigarh': 5,
+        'The Lalit Chandigarh': 5,
+        'Holiday Inn Chandigarh Panchkula': 4,
+        'Lemon Tree Hotel, Chandigarh': 4,
+        'Hometel Chandigarh': 3,
+        'Hotel Rajshree': 3,
+        'Hotel Icon': 3,
+        'Hotel Shivalikview': 3
+    },
+    'Puducherry': {
+        'La Villa Shanti': 4,
+        'The Promenade': 4,
+        'Le Dupleix': 4,
+        'The Richmond': 3,
+        'Hotel Atithi': 3,
+        'Anandha Inn Convention Centre and Suites': 3,
+        'Hotel Le Royal Park': 3,
+        'Hotel Annamalai International': 3,
+        'Villa Bayoud Sea View Heritage Hotel': 3,
+        'Hotel Bon Sejour': 3
+    },
+    'Diu': {
+        'Radhika Beach Resort': 4,
+        'Azzaro Resort & Spa': 4,
+        'The Grand Highness': 3,
+        'Hotel Apaar': 3,
+        'Hotel Relax Inn': 3,
+        'The Fern Seaside Luxurious Tent Resort': 4,
+        'Kostamar Beach Resort': 3,
+        'Krishna Beach Resorts': 3,
+        'Hotel Palms': 3,
+        'Hotel Samrat': 3
+    },
+    'Srinagar': {
+        'Radisson Collection Hotel & Spa, Riverfront Srinagar': 5,
+        'Four Points by Sheraton Srinagar': 4,
+        'Vivanta Dal View': 5,
+        'The LaLit Grand Palace Srinagar': 5,
+        'Hotel Kashmir Inn': 3,
+        'Hotel Samar': 3,
+        'Hotel Valley Orchid': 3,
+        'Hotel Grand Boulevard': 3,
+        'Hotel New Prince Inn': 3,
+        'Hotel Pacific Srinagar': 3
+    },
+    'Jamshedpur': {
+        'The Sonnet Jamshedpur': 4,
+        'Ramada Jamshedpur Bistupur': 4,
+        'Hotel Ganga Regency': 3,
+        'Hotel Jiva': 3,
+        'Hotel Alcor': 3,
+        'Ginger Hotel Jamshedpur': 3,
+        'Hotel South Park': 3,
+        'Hotel Boulevard': 3,
+        'Hotel Shadab Tower': 3,
+        'Hotel Siddhartha': 3
+    },
+    'Ranchi': {
+        'Radisson Blu Hotel Ranchi': 5,
+        'Capitol Hill': 4,
+        'Hotel The Raso': 4,
+        'Hotel Green Acres': 3,
+        'Hotel The Park Retreat': 3,
+        'Hotel Shivani International': 3,
+        'Hotel Maple Wood': 3,
+        'Hotel AVN Plaza': 3,
+        'Hotel Blues Shivalik': 3,
+        'Hotel Basera': 3
+    },
+    'Bengaluru': {
+        'Taj Bangalore': 5,
+        'The Leela Bhartiya City Bengaluru': 5,
+        'Clarks Exotica Convention Resort & Spa': 5,
+        'Goldfinch Retreat': 4,
+        'Signature Club Resort': 4,
+        'Regenta Inn by Royal Orchid Hotels': 3,
+        'Shivas Galaxy Hotel': 3,
+        'Hotel Presidency': 3,
+        'Airport Gateway Hotel': 3,
+        'Hotel Airport City': 3
+    },
+    'Mysuru': {
+        'Radisson Blu Plaza Hotel Mysore': 5,
+        'Fortune JP Palace': 4,
+        'Royal Orchid Metropole': 4,
+        'Southern Star Mysore': 4,
+        'The Quorum': 4,
+        'Hotel Sandesh The Prince': 4,
+        'Hotel Pai Vista': 3,
+        'Hotel Roopa': 3,
+        'Hotel MB International': 3,
+        'Hotel Adeline': 3
+    },
+    'Thiruvananthapuram': {
+        'The Leela Kovalam': 5,
+        'Hilton Garden Inn Trivandrum': 5,
+        'Hycinth Hotels': 5,
+        'Vivanta Thiruvananthapuram': 5,
+        'Uday Suites': 4,
+        'Apollo Dimora': 4,
+        'Classic Sarovar Portico': 4,
+        'Keys Select Hotel': 3,
+        'Hotel Horizon': 3,
+        'Hotel Town Tower': 3
+    },
+    'Gwalior': {
+        'Hotel The Vedas': 3,
+        'Hotel Adityaz Gwalior': 3,
+        'Ramaya Hotel': 3,
+        'Park Inn by Radisson Gwalior': 4,
+        'Clarks Inn Suites Gwalior': 4,
+        'Radisson Hotel Gwalior': 5,
+        'The Central Park': 3,
+        'Hotel Gwalior Regency': 3,
+        'Hotel Grace, Gwalior': 3,
+        'Regenta Place Gwalior': 4
+    },
+    'Indore': {
+        'Radisson Blu Hotel Indore': 5,
+        'Sayaji Hotel Indore': 5,
+        'Marriott Indore': 5,
+        'Effotel Hotel Indore': 4,
+        'Fairfield by Marriott Indore': 4,
+        'Lemon Tree Hotel Indore': 4,
+        'Hotel Infiniti': 3,
+        'Hotel Amar Vilas': 3,
+        'Hotel Winway': 3,
+        'Hotel President': 3
+    },
+    'Bhopal': {
+        'Jehan Numa Palace Hotel': 5,
+        'Courtyard by Marriott Bhopal': 5,
+        'Noor-Us-Sabah Palace': 4,
+        'The Residency': 4,
+        'Hotel Lake View Ashok': 4,
+        'Hotel Amer Palace': 3,
+        'Hotel Arch Manor Deluxe': 3,
+        'Hotel Shree Vatika': 3,
+        'Hotel Grand Ashirwad': 3,
+        'Hotel Sonali Regency': 3
+    },
+    'Mumbai': {
+        'The Taj Mahal Palace': 5,
+        'The Oberoi Mumbai': 5,
+        'Trident Nariman Point': 5,
+        'ITC Grand Central': 5,
+        'The St. Regis Mumbai': 5,
+        'Sofitel Mumbai BKC': 5,
+        'Grand Hyatt Mumbai': 5,
+        'Hotel Marine Plaza': 4,
+        'Residency Hotel Fort': 3,
+        'The Ambassador Mumbai': 4
+    },
+    'Navi Mumbai': {
+        'Four Points by Sheraton Navi Mumbai': 4,
+        'The Regenza by Tunga': 4,
+        'Royal Tulip Navi Mumbai': 5,
+        'Ramada by Wyndham Navi Mumbai': 4,
+        'Country Inn & Suites by Radisson Navi Mumbai': 4,
+        'Fortune Select Exotica': 4,
+        'Hotel Yogi Executive': 3,
+        'Hotel Yogi Metropolitan': 3,
+        'Ibis Navi Mumbai': 3,
+        'Hotel Supreme Heritage': 3
+    },
+    'Nashik': {
+        'Radisson Blu Hotel & Spa Nashik': 5,
+        'The Gateway Hotel Ambad': 5,
+        'Express Inn Nashik': 4,
+        'The Source at Sula': 4,
+        'Courtyard by Marriott Nashik': 5,
+        'Hotel Express Inn': 4,
+        'Hotel Grand Rio': 4,
+        'Hotel Panchavati Yatri': 3,
+        'Hotel Royale Heritage': 3,
+        'Hotel New Punjab': 3
+    },
+    'Pune': {
+        'JW Marriott Hotel Pune': 5,
+        'The Westin Pune Koregaon Park': 5,
+        'Hyatt Regency Pune': 5,
+        'Conrad Pune': 5,
+        'Marriott Suites Pune': 5,
+        'Sheraton Grand Pune Bund Garden Hotel': 5,
+        'The O Hotel Pune': 5,
+        'Radisson Blu Hotel Pune Kharadi': 5,
+        'St Laurn Hotel Pune': 4,
+        'Hotel Aurora Towers': 3
+    },
+    'Imphal': {
+        'Classic Grande, a Member of Radisson Individuals': 4,
+        'Sangai Continental (The Boutique Hotel)': 3,
+        'The Classic Hotel': 3,
+        'Hotel Yaiphaba': 3,
+        'Hotel Anand Continental': 3,
+        'Hotel Bheigo': 2,
+        'Shirui Lily Hotel': 2,
+        'Hotel Imphal': 3,
+        'Hotel Nirmala': 2,
+        'Hotel Apollo': 2
+    },
+    'Shillong': {
+        'Ri Kynjai – Serenity by the Lake': 4,
+        'Hotel Polo Towers Shillong': 4,
+        'The Heritage Club – Tripura Castle': 3,
+        'Hotel Centre Point': 3,
+        'Hotel Alpine Continental': 3,
+        'Hotel Poinisuk': 3,
+        'Hotel Barbareek': 2,
+        'Hotel Broadway': 2,
+        'Hotel Eee Cee': 2,
+        'Hotel Monsoon': 2
+    },
+    'Puri': {
+        'Mayfair Waves': 5,
+        'The Chariot Resort & Spa': 4,
+        'Hotel Holiday Resort': 3,
+        'Toshali Sands Resort': 4,
+        'Hotel Sonar Bangla': 3,
+        'Sterling Puri': 4,
+        'Hotel Gandhara': 2,
+        'Hotel New Shankar International': 2,
+        'Hotel Pushpa (Berries Group of Hotels)': 2,
+        'Hotel Shree Hari': 3
+    },
+    'Bhubaneswar': {
+        'Mayfair Lagoon': 5,
+        'Trident Bhubaneswar': 5,
+        'Swosti Premium Hotel': 4,
+        'Hotel Hindusthan International Bhubaneswar': 4,
+        'Fortune Park Sishmo Bhubaneswar': 4,
+        'Ginger Bhubaneshwar': 3,
+        'Hotel Pal Heights': 4,
+        'Hotel Excellency Bhubaneswar': 3,
+        'Hotel La Franklin': 3,
+        'Hotel Pushpak': 3
+    },
+    'Ludhiana': {
+        'Hyatt Regency Ludhiana': 5,
+        'Radisson Blu Hotel MBD Ludhiana': 5,
+        'Park Plaza Ludhiana': 4,
+        'Regenta Central Klassik': 4,
+        'Hotel Nirvana': 4,
+        'Keys Select by Lemon Tree Hotels, Ludhiana': 3,
+        'Hotel Onn': 3,
+        'Hotel Friends Regency': 3,
+        'Hotel Maharaja Regency': 3,
+        'Hotel City Heart Sarovar Portico': 3
+    },
+    'Amritsar': {
+        'Hyatt Regency Amritsar': 5,
+        'Taj Swarna, Amritsar': 5,
+        'Holiday Inn Amritsar Ranjit Avenue': 4,
+        'Radisson Blu Hotel Amritsar': 5,
+        'Ramada by Wyndham Amritsar': 4,
+        'Fairfield by Marriott Amritsar': 4,
+        'Golden Tulip Amritsar': 4,
+        'Hotel City Park': 3,
+        'Hotel Shiraz Castle': 3,
+        'Hotel Hong Kong Inn': 3
+    },
+    'Tirupati': {
+        'Marasa Sarovar Premiere': 5,
+        'Fortune Select Grand Ridge': 4,
+        'Hotel Bliss': 4,
+        'Ramee Guestline Hotel': 4,
+        'Pai Viceroy Hotel': 3,
+        'Hotel PLR Grand': 3,
+        'Kences Hotel': 3,
+        'Hotel Minerva Grand': 3,
+        'Hotel Bhimas Paradise': 3,
+        'Hotel Regalia': 3
+    },
+    'Visakhapatnam': {
+        'Welcomhotel by ITC Hotels, Devee Grand Bay, Visakhapatnam': 5,
+        'Fairfield by Marriott Visakhapatnam': 4,
+        'Best Western Plus Tejvivaan': 4,
+        'Best Western Ramachandra': 3,
+        'Keys Select by Lemon Tree Hotels, Visakhapatnam': 3,
+        'Sai Harsha Residency': 2,
+        'Royal Fort Hotel': 3,
+        'Treebo Sriz Cozy Seethamadhara': 3,
+        'The Pioneer': 3,
+        'Supine Comfort': 2
+    },
+    'Vijayawada': {
+        'Lemon Tree Premier, Vijayawada': 4,
+        'Hyatt Place Vijayawada': 4,
+        'Innotel Hotel': 3,
+        'Hotel Park Elite': 3,
+        'Grand Vijayawada by GRT Hotels': 4,
+        'K N Gupta Residency': 2,
+        'Hotel Aira': 3,
+        'Treebo Trend Empire': 3,
+        'Fortune Murali Park': 4,
+        'Hotel Ilapuram': 3
+    },
+    'Itanagar': {
+        'Cygnett Inn Trendz': 3,
+        'Hotel Pybss': 3,
+        'Hotel SC Continental': 3,
+        'Hotel High East': 3,
+        'Hotel Yumi Ragi': 3,
+        'Hotel Todo Itanagar': 3,
+        'Hotel Su Pinsa': 3,
+        'Hotel Blue Pine': 2,
+        'Hotel SOLA-JU': 2,
+        'Hotel Aanggong': 2
+    },
+    'Dhubri': {
+        'The Brahmaputra Hotel': 3,
+        'Hotel Swagat': 3,
+        'Roy\'s Hotel and Restaurant': 3,
+        'Hotel Prashanti Lodge': 2,
+        'Galaxy Hotel': 2,
+        'Vijay Residency (Adhoc)': 2,
+        'Atithi Regency': 1,
+        'Hotel O Bismillah Hotel & Lodge': 1,
+    },
+    'Guwahati': {
+        'Pemaling Lords Eco Inn Guwahati': 3,
+        'Vivanta Guwahati': 5,
+        'Novotel Guwahati GS Road': 5,
+        'Radisson Blu Hotel Guwahati': 5,
+        'Greenwood Resort': 4,
+        'Hotel Daaysco Oley Allo': 3,
+        'Kiranshree Grand': 4,
+        'Hotel Atithi': 3,
+        'Hotel Rajmahal': 3,
+        'Hotel Prag Continental': 3
+    },
+    'Patna': {
+        'Hotel Maurya': 5,
+        'Lemon Tree Premier, Patna': 4,
+        'Hotel Chanakya': 4,
+        'Hotel Patliputra Exotica': 4,
+        'Hotel Gargee Grand': 4,
+        'Hotel Samrat International': 3,
+        'Hotel Republic': 3,
+        'Hotel Savera': 3,
+        'Hotel Windsor': 3,
+        'Hotel President': 3
+    },
+    'Raipur': {
+        'MAYFAIR Lake Resort': 5,
+        'Hotel Shamrock Greens': 4,
+        'Hotel Grand Canyon': 3,
+        'Courtyard Raipur': 4,
+        'Tulip Arena Raipur': 3,
+        'Hotel Babylon International': 4,
+        'Hyatt Raipur': 4,
+        'Clarks Inn Suites Raipur': 4,
+        'Hotel Grand Imperia': 3,
+        'Hotel VW Canyon': 4
+    },
+    'Bilaspur': {
+        'Courtyard by Marriott Bilaspur': 5,
+        'Hotel East Park': 4,
+        'Ananda Imperial': 4,
+        'Hotel Intercity International': 3,
+        'Hotel Heavens Park': 3,
+        'Hotel Silver Oak': 3,
+        'Hotel Central Point International': 3,
+        'Hotel Jeet Continental': 3,
+        'Hotel Anand': 2,
+        'Hotel Vinayak Palace': 2
+    },
+    'Raigarh': {
+        'Hotel Trinity Grand': 3,
+        'Hotel Shreshtha': 3,
+        'Hotel Ans International': 2,
+        'Hotel Shubham': 2,
+        'Hotel Shree Shyam International': 2,
+        'Hotel Aashirwad': 2,
+        'Hotel Shyam': 2,
+        'Hotel Shree Sai': 1,
+        'Hotel City Inn': 1,
+        'Hotel Relax': 1
+    },
+    'Mopa': {
+        'Mopa Airport Hotel': 3,
+        'Hotel Hill Rock': 3,
+        'Stone Wood Nature Resort': 3,
+        'Hotel Swarnam': 2,
+        'Hotel Hill View': 2,
+        'Hotel Green Valley': 2,
+        'Hotel Sea View': 2,
+        'Hotel Sunshine': 1,
+        'Hotel Blue Lagoon': 1,
+        'Hotel Palm Grove': 1
+    },
+    'Dabolim': {
+        'The Postcard Cuelim': 5,
+        'Mariaariose - Melody of the Sea': 3,
+        'Coconut Creek Resort': 3,
+        'Devasthali - The Valley of Gods': 3,
+        'Hotel Cliff': 2,
+        'Hotel La Paz Gardens': 3,
+        'Hotel Supreme': 3,
+        'Hotel Vasco Residency': 2,
+        'Hotel Annapurna': 2,
+        'Hotel Avisha Residency': 1
+    },
+    'Ahmedabad': {
+        'Hyatt Regency Ahmedabad': 5,
+        'Taj Skyline Ahmedabad': 5,
+        'Courtyard by Marriott Ahmedabad': 5,
+        'The Leela Gandhinagar': 5,
+        'Novotel Ahmedabad': 5,
+        'Radisson Blu Hotel Ahmedabad': 5,
+        'Crowne Plaza Ahmedabad City Centre': 5,
+        'Fortune Landmark': 4,
+        'Lemon Tree Premier': 4,
+        'Ginger Ahmedabad': 3
+    },
+    'Surat': {
+        'Surat Marriott Hotel': 5,
+        'Courtyard by Marriott Surat': 5,
+        'The Gateway Hotel Athwalines Surat': 5,
+        'Lords Plaza Surat': 4,
+        'Best Western Yuvraj': 3,
+        'Ginger Surat': 3,
+        'Hotel Central Excellency': 3,
+        'Hotel Orange International': 3,
+        'Budget Inn Bellevue': 3,
+        'Hotel Sifat International': 3
+    },
+    'Vadodara': {
+        'Welcomhotel by ITC Hotels, Alkapuri': 5,
+        'Vivanta Vadodara': 5,
+        'Grand Mercure Vadodara Surya Palace': 5,
+        'Hyatt Place Vadodara': 5,
+        'Sayaji Hotel Vadodara': 4,
+        'Four Points by Sheraton Vadodara': 4,
+        'Lemon Tree Hotel Vadodara': 4,
+        'Ginger Vadodara': 3,
+        'Hotel Suba Elite': 3,
+        'Hotel Express Towers': 3
+    },
+    'Hisar': {
+        'Hotel Imperial Blue': 3,
+        'Hotel City Square': 3,
+        'Hotel Grace': 3,
+        'Hotel Deep': 2,
+        'Hotel Skylark': 2,
+        'Hotel Crown': 2,
+        'Hotel Midtown Grand': 2,
+        'Hotel Paradise': 1,
+        'Hotel City Heart': 1,
+        'Hotel Relax Inn': 1
+    },
+    'Shimla': {
+        'The Oberoi Cecil': 5,
+        'Radisson Hotel Shimla': 5,
+        'Clarkes Hotel': 4,
+        'Hotel Marina': 4,
+        'Hotel Willow Banks': 3,
+        'Hotel Combermere': 3,
+        'Honeymoon Inn Shimla': 3,
+        'Hotel Silverine': 3,
+        'Hotel Baljees Regency': 3,
+        'Hotel Shingar': 2
+    },
+    'Kullu-Manali': {
+        'The Himalayan': 5,
+        'Manuallaya Resort': 4,
+        'Apple Country Resort': 4,
+        'Snow Valley Resorts': 3,
+        'Hotel Manali Continental': 3,
+        'Hotel Honeymoon Inn Manali': 3,
+        'Hotel Manali Heights': 3,
+        'Hotel Snow Park': 2,
+        'Hotel New Adarsh': 2,
+        'Hotel Greenfields': 2
+    }
 }
 
 # Convert to DataFrame
-df_hotels = pd.DataFrame(dict([(k, pd.Series(v)) for k, v in hotels.items()]))
-print(df_hotels)
+# df_hotels = pd.DataFrame(dict([(k, pd.Series(v)) for k, v in hotels.items()]))
+# print(df_hotels)
 
-df = pd.DataFrame(hotels)
-print(df)
+# df = pd.DataFrame(hotels)
+# print(df)
 
-hotel_df = pd.read_excel('datas//Final_India.xlsx')
-print(hotel_df)
+# hotel_df = pd.read_excel('datas//Final_India.xlsx')
+# print(hotel_df)
+print(len(hotels.keys()))

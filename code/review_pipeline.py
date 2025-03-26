@@ -29,9 +29,11 @@ negative_reviews.rename(columns={'negative reviews': 'Reviews'}, inplace=True)
 
 # Merge data
 merged_df = pd.concat([positive_reviews, neutral_reviews, negative_reviews], ignore_index=True)
+merged_df = merged_df.sample(frac=1, random_state=42).reset_index(drop=True)
 
 # Download NLTK resources
 nltk.download('punkt')
+nltk.download('punkt_tab')
 nltk.download('stopwords')
 
 # Define a preprocessing function
@@ -70,5 +72,5 @@ accuracy = accuracy_score(y_test, y_pred)
 print(f"TF-IDF + Logistic Regression Accuracy: {accuracy:.4f}")
 
 # Save the pipeline for future use
-joblib.dump(pipeline, 'sentiment_analysis_pipeline.pkl')
+joblib.dump(pipeline, 'Sentiment_Analysis_Pipeline.pkl')
 
