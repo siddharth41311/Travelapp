@@ -5,9 +5,9 @@ import numpy as np
 import pandas as pd
 from dotenv import load_dotenv
 
-preprocessor = joblib.load('preprocessor.pkl')
-selector = joblib.load('feature_selector.pkl')
-model = joblib.load('hotel_final_price_model.pkl')
+preprocessor = joblib.load('pkl folder//preprocessor.pkl')
+selector = joblib.load('pkl folder//feature_selector.pkl')
+model = joblib.load('pkl folder//hotel_final_price_model.pkl')
 
 load_dotenv()
 NEW_URL = os.getenv("NEW_URL")
@@ -17,7 +17,7 @@ engine = create_engine(NEW_URL)
 with engine.connect() as conn:
     inference_df = pd.read_sql('SELECT * FROM HotelBooking', conn)
 
-drop_columns = ['travelCode', 'User_ID', 'Check_in_Date', 'Check_Out_Date', 'Amenities', 'Total_Cost_per_Night']
+drop_columns = ['travelCode', 'User_ID', 'Check_in_Date', 'Check_Out_Date']
 inference_df.drop(columns=[col for col in drop_columns if col in inference_df.columns], inplace=True)
 
 # Apply preprocessing and feature selection

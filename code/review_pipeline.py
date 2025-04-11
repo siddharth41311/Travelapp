@@ -16,9 +16,9 @@ from dotenv import load_dotenv
 import os
 from sqlalchemy import create_engine
 # Load data
-positive_reviews = pd.read_csv('hotel_positive_reviews.csv')
-neutral_reviews = pd.read_csv('hotel_neutral_reviews.csv')
-negative_reviews = pd.read_csv('hotel_negative_reviews.csv')
+positive_reviews = pd.read_csv('datas//hotel_positive_reviews.csv')
+neutral_reviews = pd.read_csv('datas//hotel_neutral_reviews.csv')
+negative_reviews = pd.read_csv('datas//hotel_negative_reviews.csv')
 
 # Rename columns
 positive_reviews.rename(columns={'positive reviews': 'Reviews'}, inplace=True)

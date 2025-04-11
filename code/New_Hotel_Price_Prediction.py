@@ -28,18 +28,18 @@ db = mysql.connector.connect(
 query = "SELECT * FROM HotelBooking"
 df = pd.read_sql(query, con=db)
 db.close()
-df['Check_in_Date'] = pd.to_datetime(df['Check_in_Date'])
+# df['Check_in_Date'] = pd.to_datetime(df['Check_in_Date'])
 
-# Extracting new features
-df['Checkin_Day'] = df['Check_in_Date'].dt.dayofweek  # Monday = 0, Sunday = 6
-df['Checkin_Month'] = df['Check_in_Date'].dt.month
-df['Is_Weekend'] = df['Checkin_Day'].apply(lambda x: 1 if x >= 5 else 0)  # 1 if Sat/Sun, else 0
+# # Extracting new features
+# df['Checkin_Day'] = df['Check_in_Date'].dt.dayofweek  # Monday = 0, Sunday = 6
+# df['Checkin_Month'] = df['Check_in_Date'].dt.month
+# df['Is_Weekend'] = df['Checkin_Day'].apply(lambda x: 1 if x >= 5 else 0)  # 1 if Sat/Sun, else 0
 
 # Define Peak Season (Example: Summer months & December)
 #peak_season_months = [6, 7, 8, 12]  # June, July, August, December
 #df['Is_Peak_Season'] = df['Checkin_Month'].apply(lambda x: 1 if x in peak_season_months else 0)
 # Drop non-essential columns
-drop_columns = ['travelCode', 'User_ID', 'Check_in_Date', 'Check_Out_Date', 'Amenities', 'Room_Price_per_Night','Total_Cost_per_Night']
+drop_columns = ['travelCode', 'User_ID', 'Check_in_Date', 'Check_Out_Date', 'Amenities', 'Departure']
 df.drop(columns=[col for col in drop_columns if col in df.columns], inplace=True)
 
 # Feature Engineering
@@ -66,7 +66,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 # Apply preprocessing
 X_train = preprocessor.fit_transform(X_train)
 X_test = preprocessor.transform(X_test)
-#joblib.dump(preprocessor, 'preprocessor.pkl')
+joblib.dump(preprocessor, 'preprocessor.pkl')
 
 # Feature Selection using XGBoost
 xgb_feat_selector = XGBRegressor(n_estimators=200, random_state=42)
@@ -75,7 +75,7 @@ selector = SelectFromModel(xgb_feat_selector, threshold="median", prefit=True)
 
 X_train = selector.transform(X_train)
 X_test = selector.transform(X_test)
-#joblib.dump(selector, 'feature_selector.pkl')
+joblib.dump(selector, 'feature_selector.pkl')
 
 # Hyperparameter Optimization with Optuna
 def objective(trial):
@@ -118,7 +118,7 @@ def objective(trial):
     return scores.mean()
 
 study = optuna.create_study(direction='maximize')
-study.optimize(objective, n_trials=75)  # Increased trials
+study.optimize(objective, n_trials=30)  # Increased trials
 
 best_params = study.best_params
 print("Best Model:", best_params['model_type'])
@@ -149,4 +149,4 @@ print("Test Performance:", mean_absolute_error(y_test, y_pred), np.sqrt(mean_squ
 y_pred = stacking_model.predict(X_train)
 print("Train Performance:", mean_absolute_error(y_train, y_pred), np.sqrt(mean_squared_error(y_train, y_pred)), r2_score(y_train, y_pred))
 
-#joblib.dump(stacking_model, 'hotel_final_price_model.pkl')
+joblib.dump(stacking_model, 'hotel_final_price_model.pkl')
