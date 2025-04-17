@@ -15,19 +15,21 @@ from sklearn.feature_selection import SelectFromModel
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.linear_model import Ridge
 import joblib
+from dotenv import load_dotenv
+from sqlalchemy import create_engine
+import os
+
+load_dotenv()
+NEW_URL = os.getenv("NEW_URL")
+engine = create_engine(NEW_URL)
 
 # Connect to MySQL database
-db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="Marijuana@1!",
-    database="TravelDB"
-)
-
+with engine.connect() as conn:
+    df = pd.read_sql('SELECT * FROM HotelBooking', conn)
 # Fetch data
-query = "SELECT * FROM HotelBooking"
-df = pd.read_sql(query, con=db)
-db.close()
+# query = "SELECT * FROM HotelBooking"
+# df = pd.read_sql(query, con=db)
+# db.close()
 # df['Check_in_Date'] = pd.to_datetime(df['Check_in_Date'])
 
 # # Extracting new features

@@ -13,19 +13,18 @@ from xgboost import XGBRegressor
 from sklearn.feature_selection import SelectFromModel
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import joblib
+import os
+from dotenv import load_dotenv
+from sqlalchemy import create_engine
 
 # Connect to MySQL database
-db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="Marijuana@1!",
-    database="TravelDB"
-)
+load_dotenv()
+NEW_URL = os.getenv("NEW_URL")
+engine = create_engine(NEW_URL)
 
-# Fetch data
-query = "SELECT * FROM HotelBookings"
-df = pd.read_sql(query, con=db)
-db.close()
+# Connect to MySQL database
+with engine.connect() as conn:
+    df = pd.read_sql('SELECT * FROM HotelBookings', conn)
 
 # Drop non-essential columns
 drop_columns = ['travelCode', 'User_ID', 'Check_in_Date', 'Check_Out_Date', 'Amenities', 'Total_Cost_per_Night']

@@ -8,17 +8,17 @@ import joblib
 import pandas as pd
 import mysql.connector
 import numpy as np
+import os
+from dotenv import load_dotenv
+from sqlalchemy import create_engine
 
 # ✅ 1. Load Data from MySQL
-db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="Marijuana@1!",
-    database="TravelDB"
-)
-df = pd.read_sql("SELECT * FROM HotelBooking", con=db)
-db.close()
+NEW_URL = os.getenv("NEW_URL")
+engine = create_engine(NEW_URL)
 
+# Connect to MySQL database
+with engine.connect() as conn:
+    df = pd.read_sql('SELECT * FROM HotelBooking', conn)
 # ✅ 2. Drop Unnecessary Features
 drop_columns = ['travelCode', 'User_ID', 'Check_in_Date', 'Check_Out_Date', 'Departure','Room_Price_per_Night','Total_Price_per_Night']
 df.drop(columns=[col for col in drop_columns if col in df.columns], inplace=True)

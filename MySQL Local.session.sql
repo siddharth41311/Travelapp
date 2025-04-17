@@ -79,6 +79,7 @@ Show databases;
 
 CREATE DATABASE TravelDB;
 USE TravelDB;
+USE Travel;
 
 CREATE TABLE HotelBookings (
     travelCode VARCHAR(20) PRIMARY KEY,
@@ -121,6 +122,8 @@ CREATE TABLE HotelBooking (
     Check_Out_Date DATE NOT NULL
 );
 SELECT * FROM HotelBooking
+
+SELECT * FROM hotel_review
 
 
 

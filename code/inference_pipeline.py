@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 from review_pipeline import preprocess_reviews
 
 
+
 pipeline = joblib.load('pkl folder//Sentiment_Analysis_Pipeline.pkl')
 load_dotenv()
 DB_URL = os.getenv("DB_URL")

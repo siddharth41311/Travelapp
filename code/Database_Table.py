@@ -1,10 +1,13 @@
 import pandas as pd
 import mysql.connector
+from dotenv import load_dotenv
+from sqlalchemy import create_engine
+import os
 
 db = mysql.connector.connect(
     host="localhost",       
-    user="root",            
-    password="Marijuana@1!",    
+    user="***",            
+    password="***",    
     database="travel"   
 )
 
